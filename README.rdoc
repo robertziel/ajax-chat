@@ -1,28 +1,17 @@
-== README
+== AJAX Chat
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Open Source chat concept developed in Ruby on Rails and jQuery.
+Feel free to fork it, clone it, whatever.
 
-Things you may want to cover:
+Please note that I have not finished this application.
 
-* Ruby version
+== How to run it locally?
+Of course you should clone it first.
+Make sure that you have PostgreSQL installed.
+Then:
+<tt>bundle install</tt>
+<tt>rake db:create db:migrate</tt>
+<tt>rails s</tt>
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Rob　・　ロベルト
+robertzielinski@dobrapogoda24.pl
