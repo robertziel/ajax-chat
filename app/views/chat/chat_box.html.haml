@@ -1,0 +1,6 @@
+.chat-container{ data: { conversation_id: @conversation.id } }
+  - @conversation.messages.each do |message|
+    = render 'chat/message', message: message
+
+  = form_for [@conversation, @message] do |f|
+    = f.text_area :content

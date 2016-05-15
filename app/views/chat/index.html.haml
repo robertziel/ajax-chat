@@ -1,0 +1,7 @@
+- @users.each do |user|
+  %tr
+    %td= user.email
+    %td
+      %button.open-chat-box{ data: { recipient_id: user.id, begin_conversation: begin_conversation_path } }
+
+.chat-boxes-container

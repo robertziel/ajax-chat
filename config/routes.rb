@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'chat#index'
+  post '/begin_conversation' => 'chat#begin_conversation'
+  post '/conversation/:conversation_id/new_message/' => 'chat#create_message', as: :conversation_messages
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

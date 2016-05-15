@@ -1,0 +1,24 @@
+.chat-boxes-container {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+
+  .chat-container {
+    position: relative;
+    border: 3px solid #24B840;
+    height: 400px;
+    width: 300px;
+    float: right;
+
+    form {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      margin: 5px;
+    }
+
+    #message_content {
+      min-width: 95%;
+    }
+  }
+}
