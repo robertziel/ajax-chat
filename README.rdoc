@@ -9,9 +9,13 @@ Please note that I have not finished this application.
 Of course you should clone it first.
 Make sure that you have PostgreSQL installed.
 Then:
+
 <tt>bundle install</tt>
+
 <tt>rake db:create db:migrate</tt>
+
 <tt>rails s</tt>
 
 Rob　・　ロベルト
+
 robertzielinski@dobrapogoda24.pl

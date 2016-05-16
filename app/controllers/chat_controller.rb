@@ -27,6 +27,18 @@ class ChatController < ApplicationController
     end
   end
 
+  def take_new_message
+    @conversation = Conversation.involving(current_user).
+                                 where(id: params[:conversation_id]).take
+    @message = @conversation.messages.
+                             where('id > ?', params[:newest_message_id]).first
+    if @message.nil?
+      render json: { success: false }
+    else
+      render json: { success: true, message: @message }
+    end
+  end
+
   private
 
   def message_params

@@ -1,4 +1,4 @@
-.chat-container{ data: { conversation_id: @conversation.id } }
+.chat-container{ data: { conversation_id: @conversation.id, url: take_conversation_messages_path(@conversation.id), newest_message_id: newest_message_id(@conversation.messages) } }
   - @conversation.messages.each do |message|
     = render 'chat/message', message: message
 
