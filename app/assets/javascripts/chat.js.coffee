@@ -27,14 +27,13 @@ class ChatController
     $(chat_box).appendTo($(chat_boxes_container))
     send_listener()
     new_messages_listener(conversation_id)
+    scroll_down(get_chatbox(conversation_id).children('.messages-container'))
 
   close_conversation_box = (conversation_id) ->
-    $('.chat-container[data-conversation-id="' + conversation_id + '"]')
-      .remove()
+    get_chatbox(conversation_id).remove()
 
   send_listener = () ->
     $('.chat-boxes-container').unbind().on 'keyup', 'textarea', (e) ->
-      console.log $(this)
       code = (if e.keyCode then e.keyCode else e.which)
       if code is 13
         send_message($(this).parent())
@@ -60,7 +59,7 @@ class ChatController
       ), 500
 
   ask_for_new_message = (conversation_id) ->
-    chat = $('.chat-container[data-conversation-id="' + conversation_id + '"]')
+    chat = get_chatbox(conversation_id)
     $.ajax
       type: 'GET'
       url: chat.data('url')
@@ -71,8 +70,22 @@ class ChatController
       success: (data) ->
         if data['success']
           chat.data('newest-message-id', data['message']['id'])
-          chat.append(data['message']['content'])
+          messages_container = chat.children('.messages-container')
+          append_new_message(messages_container, data['message'])
+          scroll_down(messages_container)
 
+  append_new_message = (messages_container, message) ->
+    new_message_html = $(messages_container.data('message-pattern'))
+    new_message_html.children('.message-content').text(message['content'])
+    if message['user_id'] == messages_container.data('your-id')
+      new_message_html.addClass('your-message')
+    messages_container.append(new_message_html)
+
+  scroll_down = (messages_container) ->
+    messages_container.scrollTop(messages_container[0].scrollHeight)
+
+  get_chatbox = (conversation_id) ->
+    return $('.chat-container[data-conversation-id="' + conversation_id + '"]')
 
 $ ->
   new ChatController('.open-chat-box',

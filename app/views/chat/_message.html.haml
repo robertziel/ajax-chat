@@ -1,1 +1,2 @@
-.message-body= message.content
+.message-body{ class: your_message_class(message) }
+  .message-content= message.nil? ? '' : message.content

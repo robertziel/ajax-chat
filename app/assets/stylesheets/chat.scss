@@ -20,5 +20,24 @@
     #message_content {
       min-width: 95%;
     }
+
+    .messages-container {
+      overflow-y: scroll;
+      height: 90%;
+
+      .message-body {
+        border: solid 1px grey;
+        padding: 5px;
+        margin: 2px;
+        float: left;
+        width: 80%;
+        background-color: #24B840;
+      }
+
+      .your-message {
+        float: right;
+        background-color: #C3E2C9;
+      }
+    }
   }
 }
