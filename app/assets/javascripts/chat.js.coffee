@@ -15,22 +15,30 @@ class ChatController
         success: (data) ->
           index = opened_conversations.indexOf(data['conversation_id'])
           if index > -1
-            opened_conversations.splice(index, 1)
             close_conversation_box(data['conversation_id'])
           else
-            opened_conversations.push(data['conversation_id'])
             open_conversation_box(data['conversation_id'],
                                   data['chat_box'],
                                   chat_boxes_container)
 
   open_conversation_box = (conversation_id, chat_box, chat_boxes_container) ->
+    opened_conversations.push(conversation_id)
     $(chat_box).appendTo($(chat_boxes_container))
     send_listener()
     new_messages_listener(conversation_id)
     scroll_down(get_chatbox(conversation_id).children('.messages-container'))
+    exit_button_listener(conversation_id)
 
   close_conversation_box = (conversation_id) ->
+    opened_conversations.splice(opened_conversations.
+                                indexOf(conversation_id), 1)
     get_chatbox(conversation_id).remove()
+
+  exit_button_listener = (conversation_id) ->
+    button = get_chatbox(conversation_id).children('.chat-bar').
+                                          children('.chat-exit')
+    button.click ->
+      close_conversation_box(conversation_id)
 
   send_listener = () ->
     $('.chat-boxes-container').unbind().on 'keyup', 'textarea', (e) ->
@@ -76,7 +84,9 @@ class ChatController
 
   append_new_message = (messages_container, message) ->
     new_message_html = $(messages_container.data('message-pattern'))
+    new_message_html.children('.message-autor').text(message['user']['email'])
     new_message_html.children('.message-content').text(message['content'])
+    new_message_html.children('.message-date').text(message['created_at'])
     if message['user_id'] == messages_container.data('your-id')
       new_message_html.addClass('your-message')
     messages_container.append(new_message_html)

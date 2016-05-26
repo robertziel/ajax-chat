@@ -1,6 +1,8 @@
 .chat-container{ data: { conversation_id: @conversation.id, url: take_conversation_messages_path(@conversation.id), newest_message_id: newest_message_id(@conversation.messages) } }
+  .chat-bar
+    = link_to 'X', '#', class: 'chat-exit'
   .messages-container{ data: { message_pattern: render('chat/message', message: nil), your_id: current_user.id } }
-    - @conversation.messages.each do |message|
+    - @messages.each do |message|
       = render 'chat/message', message: message
 
   = form_for [@conversation, @message] do |f|

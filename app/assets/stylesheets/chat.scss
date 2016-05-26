@@ -5,10 +5,26 @@
 
   .chat-container {
     position: relative;
-    border: 3px solid #24B840;
+    border: 1px solid #286E2E;
     height: 400px;
     width: 300px;
     float: right;
+    margin-right: 5px;
+    background: #1d1f21;
+
+    .chat-bar {
+      height: 7%;
+      background: #43b74d -webkit-linear-gradient(80deg, #43b74d 0%, #43b74d 10%, #3fae49 10%, #3fae49 20%, #3ba144 19%, #3ca546 21%, #3ca546 20%, #3ca546 30%, #379840 29%, #399c42 31%, #399c42 30%, #399c42 40%, #348f3c 39%, #35933e 41%, #35933e 40%, #35933e 50%, #318638 49%, #328a3a 51%, #328a3a 50%, #328a3a 60%, #2d7d35 59%, #2f8036 61%, #2f8036 60%, #2f8036 70%, #2a7431 69%, #2b7732 71%, #2b7732 70%, #2b7732 80%, #276a2d 79%, #286e2e 81%, #286e2e 80%, #286e2e 90%, #236129 89%, #25652b 91%, #25652b 90%, #25652b 100%);
+      background: #43b74d linear-gradient(10deg, #43b74d 0%, #43b74d 10%, #3fae49 10%, #3fae49 20%, #3ba144 19%, #3ca546 21%, #3ca546 20%, #3ca546 30%, #379840 29%, #399c42 31%, #399c42 30%, #399c42 40%, #348f3c 39%, #35933e 41%, #35933e 40%, #35933e 50%, #318638 49%, #328a3a 51%, #328a3a 50%, #328a3a 60%, #2d7d35 59%, #2f8036 61%, #2f8036 60%, #2f8036 70%, #2a7431 69%, #2b7732 71%, #2b7732 70%, #2b7732 80%, #276a2d 79%, #286e2e 81%, #286e2e 80%, #286e2e 90%, #236129 89%, #25652b 91%, #25652b 90%, #25652b 100%);
+
+      .chat-exit {
+        font-size: 25px;
+        font-family: arial;
+        padding: 3px;
+        color: white;
+        text-decoration: none;
+      }
+    }
 
     form {
       position: absolute;
@@ -21,17 +37,25 @@
       min-width: 95%;
     }
 
+    .message-autor {
+      color: rgba(0, 0, 0, 0.52);
+    }
+
+    .message-date {
+      color: rgba(0, 0, 0, 0.52);
+      font-size: 10px;
+    }
+
     .messages-container {
       overflow-y: scroll;
-      height: 90%;
+      height: 82%;
 
       .message-body {
-        border: solid 1px grey;
         padding: 5px;
         margin: 2px;
         float: left;
         width: 80%;
-        background-color: #24B840;
+        background-color: #ab875d;
       }
 
       .your-message {

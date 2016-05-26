@@ -1,2 +1,4 @@
 .message-body{ class: your_message_class(message) }
+  .message-autor= message.nil? ? '' : message.user.email
   .message-content= message.nil? ? '' : message.content
+  .message-date= message.nil? ? '' : message.created_at

@@ -1,4 +1,6 @@
 class ChatController < ApplicationController
+  MessagesPerLoad = 10
+
   def index
     @users = User.where.not(id: current_user.id).all
   end
@@ -11,6 +13,7 @@ class ChatController < ApplicationController
       @conversation = Conversation.create!(sender_id: current_user.id,
                                            recipient_id: params[:recipient_id])
     end
+    @messages = @conversation.messages.last(MessagesPerLoad)
     @message = Message.new
     chat_box = render_to_string(template: 'chat/chat_box', layout: false)
     render json: { conversation_id: @conversation.id, chat_box: chat_box }
@@ -35,7 +38,9 @@ class ChatController < ApplicationController
     if @message.nil?
       render json: { success: false }
     else
-      render json: { success: true, message: @message }
+      @message_json = @message.to_json(include: { user: { only: :email } })
+      render json: { success: true,
+                     message: JSON.parse(@message_json) }
     end
   end
 
